@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  div(class="d-flex flex-row" style="width: 100%; height: auto")
+    div(class="rounded" style=" height: auto; width: 40rem; padding: 10px; background-color: grey;")
+      h2 Welcome! 
+      p.
+        This is a small demo showing an ai learning to play the game Flappy Bird.
+        This game uses the genetic algorithm to achieve this. To grossly simplify
+        birds that do well have a higher chance of passing their "genes" to the next generation
+        you can manipulate the population size and mutation rate to influence how the birds learn.
+        Try and see which configuration works best. Enjoy.
+      form(action="/play" method='GET' class="d-flex flex-column")
+        label(class="form-label") Think you can do better than the AI? 
+        button(class="btn btn-primary") Try the game yourself!
+    div(class="rounded" style="padding: 10px; color: white;")
+      h3 Score: 
+        span(id="score") 0
+      canvas(class="rounded")
+    div(class="rounded" style="height: auto; background-color: grey; padding: 10px;")
+      label(class="form-label") Population Size 
+      input(type="range" class="form-range" id="pop" min="1" max="10" placeholder="10")
+      label(class="form-label") Mutation Rate 
+      input(type="range" class="form-range" id="mr" min="1" max="10" placeholder="1")
+      button(class="btn btn-primary") Apply
+  script.
+    const canvas = document.querySelector("canvas");
+    canvas.width = 500;
+    canvas.height = 500;
+  script(src="javascripts/brain.js")
+  script(src="javascripts/population.js")
+  script(src="javascripts/index.js")
